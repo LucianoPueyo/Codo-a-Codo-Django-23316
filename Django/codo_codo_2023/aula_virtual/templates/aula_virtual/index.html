@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Virtual 2.0</title>
+</head>
+<body>
+    <header>
+        <h1>Aula Virtual 2.0</h1>
+        <p>Bienvenid@ <b>{{first_name}} {{last_name}}</b></p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'alta_alumno' %}">Alta Alumno</a></li>
+            <li><a href="{% url 'baja_alumno' %}">Baja Alumno</a></li>
+        </ul>
+    </nav>
+    <main>
+
+        <section>
+            <h2>Alumno ficticio "obtenido" de la base de datos</h2>
+            <article>
+                <p>Nombre: {{alumn.name}}</p>
+                <p>Apellido: {{alumn.last_name}}</p>
+                <p>Edad: {{alumn.age}}</p>
+    
+                {% if not alumn.valid %}
+                    {% filter upper %}
+                        <p style="color: red;">Alerta! Este alumno no está validado aún</p>
+                    {% endfilter %}
+                {% endif %}
+            </article>
+        </section>
+        <section>
+            <h2>Listado de alumnos</h2>
+            {% for alumno in listado_alumnos %}
+                <article>
+                    <p>Nombre: {{alumno.name}}</p>
+                    <p>Apellido: {{alumno.last_name}}</p>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+    <footer>
+        <p>
+            Codo a codo 2023. Todos los derechos Reservados.
+        </p>
+</footer>
+</body>
+</html>

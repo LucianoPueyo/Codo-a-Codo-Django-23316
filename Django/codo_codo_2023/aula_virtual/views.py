@@ -3,7 +3,44 @@ from django.http import HttpResponse, HttpResponseNotFound
 
 def index(request):
     print(request.method)
-    return HttpResponse("<h1>Bienvenido</h1> al Aula Virtual 2.0")
+
+    # Hagamos de cuenta que este dato viene de la BBDD
+    alumno_ficticio = {
+        'name': 'Maria',
+        'last_name': 'Del Cerro',
+        'age': 25,
+        'valid': False
+    }
+
+    listado_alumnos = [
+        {
+            'name': 'Maria',
+            'last_name': 'Del Cerro',
+            'age': 25,
+            'valid': False,
+        },
+        {
+            'name': 'Florencia',
+            'last_name': 'Perez',
+            'age': 30,
+            'valid': False,
+        },
+        {
+            'name': 'Martin',
+            'last_name': 'Del Moro',
+            'age': 35,
+            'valid': False,
+        },
+    ]
+
+    context = {
+        'first_name': 'Carlos',
+        'last_name': 'Lopez',
+        'alumn': alumno_ficticio,
+        'listado_alumnos': listado_alumnos
+    }
+
+    return render(request, 'aula_virtual/index.html', context)
 
 def saludar(request, nombre):
     return HttpResponse(f"Hola, <b>{nombre}</b> Bienvenid@ al Aula Virtual")
