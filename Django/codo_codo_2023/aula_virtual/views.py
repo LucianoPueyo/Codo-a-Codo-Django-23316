@@ -46,7 +46,8 @@ def saludar(request, nombre):
     return HttpResponse(f"Hola, <b>{nombre}</b> Bienvenid@ al Aula Virtual")
 
 def alta_alumno(request):
-    return HttpResponse("<h2>Alta de nuevos estudiantes</h2>")
+    context = {}
+    return render(request, 'aula_virtual/alta_alumno.html', context)
 
 def baja_alumno(request):
     return HttpResponse("<h2>Baja de estudiantes activos</h2>")
