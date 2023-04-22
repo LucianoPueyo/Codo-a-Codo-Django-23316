@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 
+from .forms import AltaAlumnoForm
+
 def index(request):
     print(request.method)
 
@@ -46,7 +48,15 @@ def saludar(request, nombre):
     return HttpResponse(f"Hola, <b>{nombre}</b> Bienvenid@ al Aula Virtual")
 
 def alta_alumno(request):
-    context = {}
+    if request.method == "POST":
+        alta_alumno_form = AltaAlumnoForm(request.POST)
+    else:
+        alta_alumno_form = AltaAlumnoForm()
+    
+    context = {
+        'form': alta_alumno_form
+    }
+
     return render(request, 'aula_virtual/alta_alumno.html', context)
 
 def baja_alumno(request):
