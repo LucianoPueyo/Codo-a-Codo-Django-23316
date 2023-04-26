@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 
-from .forms import AltaAlumnoForm
+from .forms import AltaAlumnoForm, EnviarConsultaForm
 
 def index(request):
     print(request.method)
@@ -51,6 +52,7 @@ def alta_alumno(request):
     if request.method == "POST":
         alta_alumno_form = AltaAlumnoForm(request.POST)
     else:
+        # GET
         alta_alumno_form = AltaAlumnoForm()
     
     context = {
@@ -104,3 +106,24 @@ def docentes_by_year(request, year, curso):
         "<p>Docente 1</p>" + 
         "<p>Docente 2</p>"
     )
+
+def enviar_consulta(request):
+    if request.method == "POST":
+        form = EnviarConsultaForm(request.POST)
+        if form.is_valid():
+            print("------------------------")
+            print(form.cleaned_data['mail'])
+
+            messages.add_message(request, messages.SUCCESS, 'Consulta enviada con exito', extra_tags="tag1")
+
+            # Usualmente cuando se completa exitosamente un formulario
+            # redirijimos al usuario a otra parte del sitio (por ejemplo al index)
+            # para que no intente enivar dos veces el mismo formulario.
+            return redirect("index")
+    else:
+        # GET
+        form = EnviarConsultaForm()
+
+    context = {'form': form}
+
+    return render(request, 'aula_virtual/enviar_consulta.html', context)
