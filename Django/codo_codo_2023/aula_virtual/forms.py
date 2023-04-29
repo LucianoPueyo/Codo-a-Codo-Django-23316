@@ -51,5 +51,6 @@ class EnviarConsultaForm(forms.Form):
         # Always return a value to use as the new cleaned data, even if
         # this method didn't change it.
         return data
-    
-        
+
+    def clean(self):
+        pass
