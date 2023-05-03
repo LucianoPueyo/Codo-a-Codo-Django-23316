@@ -45,8 +45,8 @@ class EnviarConsultaForm(forms.Form):
         # Pueden cambiar la logica del if para probar ambos casos.
 
         data = self.cleaned_data["mail"]
-        if True:
-            raise ValidationError("El mail utilizado ya existe")
+        # if True:
+        #     raise ValidationError("El mail utilizado ya existe")
 
         # Always return a value to use as the new cleaned data, even if
         # this method didn't change it.
