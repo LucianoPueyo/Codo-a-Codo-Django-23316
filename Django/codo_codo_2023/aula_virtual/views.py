@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 
 from .forms import AltaAlumnoForm, EnviarConsultaForm
-
+from .models import Alumno
 def index(request):
     print(request.method)
 
@@ -15,26 +15,9 @@ def index(request):
         'valid': False
     }
 
-    listado_alumnos = [
-        {
-            'name': 'Maria',
-            'last_name': 'Del Cerro',
-            'age': 25,
-            'valid': False,
-        },
-        {
-            'name': 'Florencia',
-            'last_name': 'Perez',
-            'age': 30,
-            'valid': False,
-        },
-        {
-            'name': 'Martin',
-            'last_name': 'Del Moro',
-            'age': 35,
-            'valid': False,
-        },
-    ]
+    listado_alumnos = Alumno.objects.all()
+
+    print(listado_alumnos.query)
 
     context = {
         'first_name': 'Carlos',
