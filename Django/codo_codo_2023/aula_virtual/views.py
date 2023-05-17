@@ -34,6 +34,25 @@ def saludar(request, nombre):
 def alta_alumno(request):
     if request.method == "POST":
         alta_alumno_form = AltaAlumnoForm(request.POST)
+        if alta_alumno_form.is_valid():
+
+            nombre = alta_alumno_form.cleaned_data["nombre"]
+            apellido = alta_alumno_form.cleaned_data["apellido"]
+            dni = alta_alumno_form.cleaned_data["dni"]
+            
+            alumno_nuevo = Alumno(
+                nombre = nombre,
+                apellido = apellido,
+                mail = alta_alumno_form.cleaned_data["mail"],
+                dni = dni,
+                legajo = dni + nombre + apellido
+            )
+
+            alumno_nuevo.save()
+
+            messages.add_message(request, messages.SUCCESS, 'Alumno dado de alta con éxito', extra_tags="tag1")
+
+            return redirect("listar_alumnos")
     else:
         # GET
         alta_alumno_form = AltaAlumnoForm()
@@ -46,6 +65,17 @@ def alta_alumno(request):
 
 def baja_alumno(request):
     return HttpResponse("<h2>Baja de estudiantes activos</h2>")
+
+
+def listar_alumnos(request):
+    context = {}
+
+    listado = Alumno.objects.all().order_by('dni')
+
+    context['listado_alumnos'] = listado
+
+    return render(request, 'aula_virtual/listar_alumnos.html', context)
+
 
 def alumnos_2023(request):
     return HttpResponse(

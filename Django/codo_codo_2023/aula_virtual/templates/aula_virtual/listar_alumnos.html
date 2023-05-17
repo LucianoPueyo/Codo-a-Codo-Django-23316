@@ -1,0 +1,31 @@
+{% extends 'aula_virtual/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'aula_virtual/css/listar_alumnos.css' %}">
+{% endblock %}
+
+{% block titulo %}Listado de Alumnos{% endblock %}
+
+{% block encabezado %}
+<h1>Aula Virtual 2.0</h1>
+<h2>Listado de alumnos</h2>
+{% endblock %}
+
+{% block contenido %}
+
+<section class="listado">
+{% for alumno in listado_alumnos %}
+    <article>
+        <p><b>Nombre</b>: {{alumno.nombre}}</p>
+        <p><b>apellido</b>: {{alumno.apellido}}</p>
+        <p><b>mail</b>: {{alumno.mail}}</p>
+        <p><b>dni</b>: {{alumno.dni}}</p>
+        <p><b>legajo</b>: {%if alumno.legajo %} {{ alumno.legajo }} {% else %} - {% endif %}</p>
+    </article>
+{% empty %}
+
+{% endfor %}
+</section>
+{% endblock %}

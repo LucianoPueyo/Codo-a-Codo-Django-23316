@@ -1,0 +1,19 @@
+.listado {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    width: 100%;
+}
+
+article {
+    background-color: aliceblue;
+    padding: 15px;
+
+    font-size: 0.7em;
+
+    flex: 1;
+    margin: 15px;
+
+    border-radius: 5px;
+}
