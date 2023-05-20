@@ -1,0 +1,22 @@
+{% extends 'aula_virtual/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'aula_virtual/css/alta_instructor.css' %}">
+{% endblock %}
+
+{% block titulo %}Alta nuevos Instructores{% endblock %}
+
+{% block encabezado %}
+<h1>Aula Virtual 2.0</h1>
+<h2>Alta nuevos instructores</h2>
+{% endblock %}
+
+{% block contenido %}
+<form action="{% url 'alta_instructor' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit">
+</form>
+{% endblock %}

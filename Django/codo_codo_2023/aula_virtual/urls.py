@@ -5,9 +5,11 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('saludar/<str:nombre>/', views.saludar, name="saludar"),
     path('alta_alumno/', views.alta_alumno, name="alta_alumno"),
+    path('alta_instructor/', views.alta_instructor, name="alta_instructor"),
     path('baja_alumno/', views.baja_alumno, name="baja_alumno"),
 
     path('listar_alumnos/', views.listar_alumnos, name="listar_alumnos"),
+    path('listar_instructores/', views.listar_instructores.as_view(), name="listar_instructores"),
 
     path('alumnos/2023/', views.alumnos_2023, name="alumnos_2023"),
     re_path(r'^alumnos/(?P<year>[0-9]{4})/$', views.alumnos_by_year, name="alumnos_by_year"),

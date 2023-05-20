@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Alumno
+from .models import Alumno, Instructor
 
 BIRTH_YEAR_CHOICES = range(1980,2006)
 TYPE_CHOICES = [
@@ -19,6 +19,11 @@ class AltaAlumnoForm(forms.Form):
         # Validar si el Alumno a crear ya existe
         if Alumno.objects.filter(dni=self.cleaned_data["dni"]).exists():
             raise ValidationError("Ya existe un Alumno con ese DNI")
+
+class AltaInstructorForm(forms.ModelForm):
+    class Meta:
+        model = Instructor
+        fields = '__all__'
 
 
 class EnviarConsultaForm(forms.Form):
@@ -62,3 +67,4 @@ class EnviarConsultaForm(forms.Form):
 
     def clean(self):
         pass
+
