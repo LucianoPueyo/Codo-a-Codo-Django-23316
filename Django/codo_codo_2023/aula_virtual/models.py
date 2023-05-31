@@ -10,10 +10,13 @@ class Persona(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} - dni: {self.dni}"
+
 
 class Instructor(Persona):
     cuit = models.CharField(max_length=100, verbose_name="Cuit", null=True)
-
+    
 
 class Alumno(Persona):
     legajo  = models.CharField(max_length=100, verbose_name="Legajo", null=True)
@@ -30,4 +33,7 @@ class Curso(models.Model):
     comision = models.IntegerField(verbose_name="Número de comisión")
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE) # muchos a uno
     alumnos = models.ManyToManyField(Alumno) # Muchos a muchos
+
+    def __str__(self):
+        return f"Comisión: {self.comision}"
 
