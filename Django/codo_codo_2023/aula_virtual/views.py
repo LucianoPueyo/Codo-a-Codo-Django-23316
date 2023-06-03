@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required
 
 from .forms import AltaAlumnoForm, EnviarConsultaForm, AltaInstructorForm
 from .models import Alumno, Instructor
@@ -82,7 +83,7 @@ def alta_instructor(request):
 def baja_alumno(request):
     return HttpResponse("<h2>Baja de estudiantes activos</h2>")
 
-
+@login_required
 def listar_alumnos(request):
     context = {}
 
