@@ -78,14 +78,21 @@ WSGI_APPLICATION = 'codo_codo_2023.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cac2023_23316',
-        'USER': 'postgres',
-        'PASSWORD': 'codoacodo2023',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'cac2023_23316',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'codoacodo2023',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432',
+    # }
+    'default': { 
+          'ENGINE': 'django.db.backends.mysql', 
+          'NAME': 'luchoPythonAnywh$cac_23316', 
+          'USER': 'luchoPythonAnywh', 
+          'PASSWORD': 'codoacodo2023', 
+          'HOST': 'luchoPythonAnywhere.mysql.pythonanywhere-services.com', 
+     } 
 }
 
 
